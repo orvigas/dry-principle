@@ -1,27 +1,27 @@
-# DRY Principle Portfolio
+# DRY Principle Project
 
-A comprehensive Spring Boot 4 portfolio project demonstrating the **Don't Repeat Yourself (DRY)** principle through four realistic scenarios, each showing a code duplication anti-pattern alongside its solution.
+A Spring Boot 4 project that demonstrates a practical, tested understanding of the **Don't Repeat Yourself (DRY)** principle through four scenarios, each showing a code duplication anti-pattern alongside its fix.
 
 ## Overview
 
-The DRY principle states: "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."
+DRY is usually quoted as "every piece of knowledge must have a single, unambiguous, authoritative representation within a system," which is accurate but abstract. This repository is meant to show what that means in practice: the same rule or the same value living in more than one place, and what it costs once someone has to change it.
 
-Code duplication violates DRY and creates concrete, measurable costs:
+Code duplication creates concrete, measurable costs:
 
-- **Maintenance burden**: Changes to duplicated logic must be made in multiple places
-- **Inconsistency risk**: Updates can be forgotten in one location, creating silent bugs
-- **Test fragmentation**: Tests for duplicated logic are split across multiple files
-- **Reduced extensibility**: New code that needs the same logic must repeat it again
+- **Maintenance burden**: changes to duplicated logic must be made in multiple places
+- **Inconsistency risk**: an update can be forgotten in one location, creating a silent bug
+- **Test fragmentation**: tests for the same logic end up split across multiple files
+- **Reduced extensibility**: new code that needs the same logic has to repeat it again
 
-This portfolio demonstrates these costs and their solutions.
+This project walks through those costs and their fixes across four scenarios: duplicated validation, duplicated configuration values, duplicated transformation logic, and duplicated business calculations.
 
 ## Scenarios
 
 Each scenario lives under `com.orvigas.dry.<scenario>` and contains:
 
-- **`violation` package**: Classes showing the duplication anti-pattern
-- **`solution` package**: Refactored classes applying DRY extraction/abstraction
-- **Tests**: Demonstration of problem and benefit
+- **`violation` package**: classes showing the duplication anti-pattern
+- **`solution` package**: the same classes refactored to extract the duplicated logic
+- **Tests**: proof of the anti-pattern's cost and the fix's benefit
 
 ### 1. Validation Scenario
 
@@ -207,22 +207,22 @@ curl http://localhost:8080/actuator/health
 
 ## Key Takeaways
 
-1. **Duplication has costs**: The violation packages "work," but at the cost of maintenance burden, inconsistency risk, and reduced extensibility.
+1. **Duplication has costs**: the violation packages "work," but at the cost of maintenance burden, inconsistency risk, and reduced extensibility.
 
-2. **Extraction is the solution**: By extracting duplicated logic into reusable classes, we create a single source of truth.
+2. **Extraction is the fix**: pulling duplicated logic into a reusable class creates a single source of truth.
 
-3. **Single source of truth**: Changes happen once, tests are centralized, and new code automatically reuses correct logic.
+3. **Single source of truth**: changes happen once, tests are centralized, and new code automatically reuses the correct logic.
 
-4. **Intent over repetition**: Named classes and constants make intent explicit—`EmailValidator` is clearer than "validate email in multiple DTOs."
+4. **Intent over repetition**: named classes and constants make intent explicit — `EmailValidator` is clearer than "validate email in multiple DTOs."
 
-5. **DRY applies everywhere**: The principle works across validation, configuration, transformation, and business logic.
+5. **DRY applies everywhere**: the principle works across validation, configuration, transformation, and business logic.
 
 ## Testing Strategy
 
-- **Violation tests**: Demonstrate that the anti-pattern "works" but document the maintenance cost.
-- **Solution tests**: Verify that the refactored approach produces consistent, testable code.
-- **Centralized logic tests**: Focus on the extracted class (validator, config, mapper, calculator), ensuring thorough coverage of the shared logic.
-- **Integration tests**: Verify that consumers of the extracted logic (DTOs, services, controllers) correctly use it.
+- **Violation tests**: prove the anti-pattern "works" — the issue is cost, not a bug.
+- **Solution tests**: verify the refactored approach produces the same behavior, without the duplication.
+- **Centralized logic tests**: focus on the extracted class (validator, config, mapper, calculator) to give the shared logic thorough coverage.
+- **Integration tests**: verify that consumers of the extracted logic (DTOs, services, controllers) use it correctly.
 
 ## Author
 
@@ -230,4 +230,4 @@ Orlando Villegas (orvigas@gmail.com)
 
 ## License
 
-This is a portfolio project for educational purposes.
+This is a project for educational purposes.
